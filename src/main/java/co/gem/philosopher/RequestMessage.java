@@ -1,6 +1,5 @@
 package co.gem.philosopher;
 
-import co.paralleluniverse.actors.Actor;
 import lombok.Data;
 
 import java.io.Serializable;

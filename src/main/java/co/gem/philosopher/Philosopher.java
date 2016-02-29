@@ -1,7 +1,6 @@
 package co.gem.philosopher;
 
 import co.paralleluniverse.actors.BasicActor;
-import co.paralleluniverse.actors.behaviors.ResponseMessage;
 import co.paralleluniverse.fibers.SuspendExecution;
 import co.paralleluniverse.fibers.Suspendable;
 import lombok.Getter;
@@ -13,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by Philip on 2/26/16.
- *
+ * This is the client actor that represents the philosopher, and subclasses the {@link BasicActor} class.
  */
 @Slf4j
 @ToString
@@ -26,7 +25,6 @@ public class Philosopher extends BasicActor {
     private Fork lFork, rFork;
     private Random rn;
     private AtomicInteger count;
-
 
     public Philosopher(Name label, Table table, Waiter waiter, int position) {
         super(label.toString());
@@ -77,7 +75,7 @@ public class Philosopher extends BasicActor {
     }
 
     /**
-     *
+     * Constructs the message that releases the philosopher from eating
      * @return
      */
     private RequestMessage doneEatingMesg() {
@@ -93,6 +91,10 @@ public class Philosopher extends BasicActor {
         waiter.ref().send(requestToEatMesg());
     }
 
+    /**
+     * done eating
+     * @throws SuspendExecution
+     */
     private void doneEating() throws SuspendExecution {
         log.info("{} is done eating.", label);
         waiter.ref().send(doneEatingMesg());

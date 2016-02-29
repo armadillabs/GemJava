@@ -6,5 +6,5 @@ package co.gem.philosopher;
 public enum Name {
     // use a min of 5 to avoid initial dead lock for simulation
 //    NIETCHE, ARISTOTLE, SOCRATES, PLATO, KANT, DESCARTES, LOCKE, WITTGENSTEIN, CONFUCIUS, MARX;
-    NIETCHE, ARISTOTLE;
+    NIETCHE, ARISTOTLE, SOCRATES;
 }

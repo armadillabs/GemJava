@@ -8,11 +8,10 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
-import java.util.jar.Attributes;
 
 /**
  * Created by Philip on 2/26/16.
+ * This is the Waiter actor that arbitrates requests from Philosophers for locking
  */
 @Slf4j
 @ToString
@@ -23,6 +22,7 @@ public class Waiter extends BasicActor<RequestMessage, Void> {
     @Override
     @Suspendable
     protected Void doRun() throws InterruptedException, SuspendExecution {
+        // just limit the number of rounds for now
         for (int k = 0; k<100; k++) {
             RequestMessage m = receive();
             log.info("Waiter received request: {}", m);
