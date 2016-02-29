@@ -2,13 +2,15 @@
 
 Hi Gem and Company.  Here, you will find an example Java 8 applications that will hopefully demo my Dev chops in some depth, and more importantly, provide some late night giggles.
 
-The build and runtime are all mechanized via [Gradle](www.gradle.org).  To run the sample application, you'll need to install gradle:
+The build and runtime are all mechanized via [Gradle](www.gradle.org).  To run the sample application, checkout the repo:
 
-    $ brew install gradle
-  
-Checkout the repo:
+    $ git checkout https://github.com/armadillabs/GemJava.git
+    
+...and run the the gradle wrapper that has been included as part of the project:
 
-    $ git checkout 
+    $ ./gradlew run
+    
+Any transitive dependencies will be resolved and locally cached, assuming that you have internet connection.
 
 # The Starving Philosopher Eaten by Fibers
 
