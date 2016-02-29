@@ -10,6 +10,13 @@ In summary, while the classic mutex approach can help resolve the dead lock, it 
 
 To minimize boilerplate related to data access, logging and other common patterns, I've also prolifically applied [lombok](https://projectlombok.org/) annotations when appropriate.
 
+# Abstractions
+
+[Philsophers]() represent client nodes that contend for system resources.
+[Waiter]() is the arbitrator that ensure the "missing 1 fork" race condition doesn't happen.
+[Forks]() is the contended resource.
+[Table]() describe the structure and relationship between philosophers and their forks.
+
 # Building and running it
 
 The build and runtime are all mechanized via [Gradle](www.gradle.org).  To run the sample application, checkout the repo:
