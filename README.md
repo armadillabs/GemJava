@@ -1,6 +1,15 @@
-# README
+# INTRO
 
-Hi Gem and Company.  Here, you will find an example Java 8 applications that will hopefully demo my Dev chops in some depth, and more importantly, provide some late night giggles.
+Hi Gem and Company.  Here, you will find an example Java 8 applications that will hopefully demo my Dev chops in some depth, and more importantly, provide some late night giggles.  I've spent about 3-4 total hours on it since learning Quasar took a bit of reading.
+
+
+# The Starving Philosophers
+
+This is an illustration of the classic resource locking problem that plagues distributed systems when nodes contend for limited resources.  A good writeup can be found [here](https://practicingruby.com/articles/gentle-intro-to-actor-based-concurrency) and [here](http://adit.io/posts/2013-05-11-The-Dining-Philosophers-Problem-With-Ron-Swanson.html), where I've shameless taken the data modeling.  Originally formulated by [Djkistra](https://en.wikipedia.org/wiki/Dining_philosophers_problem), it serves to illustrate problems that occur within distributed systems and techniques for solving them. 
+
+In summary, while the classic mutex approach can help resolve the dead lock, it can actually be more elegantly solved by applying an Actor framework.  It simplifies the hairy implementation that would otherwise be hard to debug using Java's concurrent framework.  For this example, I've chosen to use [Quasars](http://docs.paralleluniverse.co/quasar/) which provides asynchronous tools such as light-weight threads (fibers), Dataflow, and Actors for implementing distributed systems.
+
+# Building and running it
 
 The build and runtime are all mechanized via [Gradle](www.gradle.org).  To run the sample application, checkout the repo:
 
@@ -12,11 +21,7 @@ The build and runtime are all mechanized via [Gradle](www.gradle.org).  To run t
     
 Any transitive dependencies will be resolved and locally cached, assuming that you have internet connection.
 
-# The Starving Philosopher Eaten by Fibers
-
-This is an illustration of the classic resource locking problem that plagues distributed systems when nodes contend for limited resources.  A good writeup can be found [here](https://practicingruby.com/articles/gentle-intro-to-actor-based-concurrency) and [here](http://adit.io/posts/2013-05-11-The-Dining-Philosophers-Problem-With-Ron-Swanson.html), where I've shameless taken the data modeling.  Originally formulated by [Djkistra](https://en.wikipedia.org/wiki/Dining_philosophers_problem), it serves to illustrate problems that occur within distributed systems and techniques for solving them. 
-
-In summary, while the classic mutex approach can help resolve the dead lock, it can actually be more elegantly solved by applying an Actor framework.  It simplifies the hairy implementation that would otherwise be hard to debug using Java's concurrent framework.  For this example, I've chosen to use [Quasars](http://docs.paralleluniverse.co/quasar/) which provides asynchronous tools such as light-weight threads (fibers), Dataflow, and Actors for implementing distributed systems.
+There may be a couple times when things will just **BORK**, just Ctrl-C and run a couple times until no exceptions are thrown :).  This is a work-in-progress.
 
 # What worked, and what doesn't
 
