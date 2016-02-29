@@ -1,0 +1,41 @@
+/**
+ * gradle script the quasar demo.  Application plugin is used to configure the JVM arguments for running the simulation.
+ */
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'idea'
+
+configurations {
+    quasar
+}
+
+repositories {
+    mavenCentral()
+}
+
+group 'co.gem'
+sourceCompatibility = 1.8
+mainClassName = 'co.gem.philosopher.Driver'
+ext.classifier = ':jdk8'
+ext.quasarVer = '0.7.4'
+ext.junitVer = '4.11'
+ext.lombokVer = '1.16.6'
+ext.slf4jVer = '1.7.16'
+
+dependencies {
+    compile "co.paralleluniverse:quasar-core:${quasarVer}${classifier}"
+    quasar "co.paralleluniverse:quasar-core:${quasarVer}${classifier}@jar"
+    compile "co.paralleluniverse:quasar-actors:${quasarVer}"
+    compile "co.paralleluniverse:quasar-galaxy:${quasarVer}"
+    compile "org.projectlombok:lombok:${lombokVer}"
+    compile "org.slf4j:slf4j-simple:${slf4jVer}"
+    compile "org.slf4j:slf4j-api:${slf4jVer}"
+    testCompile "junit:junit:${junitVer}"
+}
+
+// instrumentation critical, because this is how quasar keeps track of the suspension states of all the threads.  If
+// this is not here, there will be exceptions thrown that suggest suspensions are not available
+applicationDefaultJvmArgs = [
+        //"-Dco.paralleluniverse.fibers.verifyInstrumentation=true",
+        "-javaagent:${configurations.quasar.iterator().next()}"]
