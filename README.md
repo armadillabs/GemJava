@@ -33,7 +33,7 @@ There may be a couple times when things will just **BORK**, just Ctrl-C and run 
 
 This is a work-in-progress.
 
-# What worked, and what doesn't
+# What worked, and what didn't
 
 In order to simulate the stochastic time intervals when the clients (Philosopher actors) messages the supervisor (Waiter actor), I've introduced [random pauses](https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#wait%28long%29) in client actors' threads.  A couple unexpected bugs that are yet to be solved with actors:
 
