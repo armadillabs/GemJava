@@ -11,7 +11,6 @@ import java.io.Serializable;
 public class RequestMessage implements Serializable {
     private Philosopher originator;
     // philosopher >> waiter states: 1 = eat, 2 = done eating
-    // waiter >> philosopher states: 10 = eat
     private int state;
     public RequestMessage(Philosopher originator, int state) {
         this.originator = originator;
