@@ -25,6 +25,7 @@ public class Philosopher extends BasicActor {
     private Fork lFork, rFork;
     private Random rn;
     private AtomicInteger count;
+    private static int randTime = 1000;
 
     public Philosopher(Name label, Table table, Waiter waiter, int position) {
         super(label.toString());
@@ -35,7 +36,7 @@ public class Philosopher extends BasicActor {
         this.rFork = table.getRightFork(position);
         this.position = position;
         //count = new AtomicInteger(0);
-        rn = new Random();
+        rn = new Random(1);
         log.info("{} has awakened.", label);
 
         // start by thinking
@@ -126,7 +127,7 @@ public class Philosopher extends BasicActor {
     @Suspendable
     private void think() throws InterruptedException, SuspendExecution {
         log.info("{} is thinking.", label);
-        Thread.sleep(rn.nextInt(3000)+1);
+        Thread.sleep(rn.nextInt(randTime)+1);
         requestToEat();
     }
 
@@ -138,7 +139,7 @@ public class Philosopher extends BasicActor {
         takeForks();
         log.info("{} is eating.", label);
         //count.addAndGet(1);
-        Thread.sleep(rn.nextInt(3000)+1);
+        Thread.sleep(rn.nextInt(randTime)+1);
         dropForks();
         doneEating();
         think();

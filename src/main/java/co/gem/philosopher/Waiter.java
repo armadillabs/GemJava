@@ -33,13 +33,16 @@ public class Waiter extends BasicActor<RequestMessage, Void> {
             if (curState == 1 && !eaters.contains(curName)) {
                 eaters.add(curName);
                 log.info("waiter serving {}", curName);
-                //m.getOriginator().ref().send(new RespondMessage(this, 10), 30, TimeUnit.SECONDS);
+
                 RespondMessage servingMessage = new RespondMessage(this, 10);
 
-                while (!m.getOriginator().ref().trySend(servingMessage)) {
-                    m.getOriginator().ref().trySend(servingMessage);
+                try {
+                    m.getOriginator().ref().send(servingMessage);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    //throw new IllegalStateException();
                 }
-                //m.getOriginator().ref().send(new RespondMessage(this, 10));
+//                log.info("waiter message sent");
             }
             else if (curState == 2) {
                 log.info("waiter cleaning up {}", curName);
